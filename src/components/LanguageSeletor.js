@@ -18,10 +18,10 @@ const LanguageSeletor = () => {
           <span>ENGLISH</span>
         </span>
         {openLanguages && (
-          <div className="absolute mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          <div className="absolute mt-2 rounded-md shadow-lg bg-white ring-1 text-black ring-black ring-opacity-5">
             <ul className="py-1">
               <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                Khmer
+                ខ្មែរ
               </li>
               <li className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 cursor-pointer">
                 Chinese
