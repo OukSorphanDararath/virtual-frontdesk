@@ -23,7 +23,7 @@ const DateTime = () => {
   });
 
   return (
-    <div className="flex gap-6">
+    <div className="flex gap-6 text-2xl">
       <p>{formattedTime}</p>
       <p>{formattedDate}</p>
     </div>

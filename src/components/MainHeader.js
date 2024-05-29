@@ -5,18 +5,23 @@ import LanguageSeletor from "./LanguageSeletor";
 
 const MainHeader = () => {
   return (
-    <div className="flex justify-between items-center mx-10 text-white">
-      {/* Logo */}
-      <div className="flex items-center">
-        <img
-          src={pucLogo}
-          alt="PUC LOGO"
-          style={{ width: "80px", height: "80px" }}
-        />
-        <span>Pannasastra University of Cambodia</span>
+    <div className="flex justify-between items-center h-26 text-white">
+      <div className="flex flex-row items-center flex-1 gap-x-8">
+        {/* Logo */}
+        <div className="flex flex-row items-center gap-4 max-w-[35%]">
+          <img
+            src={pucLogo}
+            alt="PUC LOGO"
+            style={{ width: "100px", height: "100px" }}
+          />
+          <span className="font-medium text-2xl text-wrap">
+            Paññāsāstra University of Cambodia
+          </span>
+        </div>
+        {/* Time and Date */}
+        <span className="border h-10 mr-10"></span>
+        <DateTime />
       </div>
-      {/* Time and Date */}
-      <DateTime />
       {/* Language Switch */}
       <LanguageSeletor />
     </div>
