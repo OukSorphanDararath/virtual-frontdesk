@@ -19,7 +19,7 @@ const MainHeader = () => {
           </span>
         </div>
         {/* Time and Date */}
-        <span className="border h-10 mr-10"></span>
+        <span className="border h-14 mr-10"></span>
         <DateTime />
       </div>
       {/* Language Switch */}
