@@ -8,16 +8,16 @@ const HomePage = () => {
   const carouselData = [
     {
       image: "https://www.puc.edu.kh/images/2024/5/main.png",
-      title: "Image 1",
+      title: "Congratulations to Miss Lao Sokkeang, who has been granted a scholarship for the 6-month Student Exchange Program in Japan",
     },
     {
       image: "https://www.puc.edu.kh/images/2024/banner-puc-ifl.png",
-      title: "Image 2",
+      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis gravida nulla eu iaculis. Integer suscipit eu sem id accumsan. Nunc consequat ex turpis, eu tristique ante maximus quis. Ut a condimentum mi. Fusce at sem ut lorem semper rhoncus ac ut ante.",
     },
     {
       image:
         "https://www.puc.edu.kh/images/2016/annoucement-general/health-education/main.jpg",
-      title: "Image 3",
+      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis gravida nulla eu iaculis. Integer suscipit eu sem id accumsan. Nunc consequat ex turpis, eu tristique ante maximus quis. Ut a condimentum mi. Fusce at sem ut lorem semper rhoncus ac ut ante.",
     },
   ];
 
