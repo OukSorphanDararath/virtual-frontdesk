@@ -3,8 +3,11 @@ import "../node_modules/flag-icons/css/flag-icons.min.css";
 // import HomePage from "./Pages/HomePage";
 // import SchedulePage from "./Pages/SchedulePage";
 // import ContactPage from "./Pages/ContactPage";
-import FacultiesPage from "./Pages/FacultiesPage";
+// import FacultiesPage from "./Pages/FacultiesPage";
+// import WifiConnectionPage from "./Pages/WifiConnectionPage";
+// import CampusPage from "./Pages/CampusPage";
 import Footer from "./components/Footer";
+import RoomNavigationPage from "./Pages/RoomNavigationPage";
 
 function App() {
   return (
@@ -12,7 +15,10 @@ function App() {
       {/* <HomePage /> */}
       {/* <SchedulePage /> */}
       {/* <ContactPage /> */}
-      <FacultiesPage />
+      {/* <FacultiesPage /> */}
+      {/* <WifiConnectionPage /> */}
+      {/* <CampusPage /> */}
+      <RoomNavigationPage />
       <Footer />
     </div>
   );
