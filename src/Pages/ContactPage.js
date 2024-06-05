@@ -19,10 +19,10 @@ const ContactPage = () => {
       <div className="absolute left-0 -right-10 flex overflow-x-auto no-scrollbar flex-nowrap gap-5">
         {contactData.map((item) => (
           <Card className="bg-white text-blue-900 relative">
-            <div className="h-2/5 bg-gradient-to-t from-blue-200 p-4 relative">
+            <div className="h-2/5 bg-gradient-to-t from-blue-200 px-6 py-4 relative">
               <img
                 src={pucLogo}
-                className="absolute right-4 top-4"
+                className="absolute right-6 top-6"
                 alt="PUC LOGO"
                 style={{ width: "70px", height: "70px" }}
               />
@@ -30,8 +30,8 @@ const ContactPage = () => {
                 <h1 className="text-3xl font-semibold">{item?.title}</h1>
               </div>
             </div>
-            <div className="h-3/5 p-4">
-              <div className="flex flex-col gap-3 mb-10 mt-2">
+            <div className="h-3/5 p-6">
+              <div className="flex flex-col gap-3 mb-8 mt-2">
                 <span className="font-normal">Mobile</span>
                 <span className="font-semibold text-2xl">{item?.mobile}</span>
               </div>
@@ -40,7 +40,7 @@ const ContactPage = () => {
                 <span className="font-semibold text-2xl">{item?.telegram}</span>
                 <MdQrCodeScanner size={50} className="absolute right-0 top-2" />
               </div>
-              <div className="flex justify-center absolute bottom-4 left-0 right-0">
+              <div className="flex justify-center absolute bottom-6 left-0 right-0">
                 <Button text={"Call"} />
               </div>
             </div>
