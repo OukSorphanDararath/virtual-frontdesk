@@ -10,7 +10,7 @@ const SearchBox = () => {
       <input
         type="search"
         id="default-search"
-        className={`block w-96 focus:outline-none py-3 ps-16 text-lg shadow-inner rounded-full bg-white bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20`}
+        className={`block w-96 focus:outline-none py-3 ps-16 pe-6 text-lg shadow-inner rounded-full bg-white bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-20`}
         placeholder="Search"
       />
     </div>
