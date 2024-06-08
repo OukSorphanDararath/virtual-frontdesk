@@ -1,15 +1,11 @@
-import React, { useTransition } from "react";
+import React from "react";
 import { useHistory } from "react-router-dom";
 
 const Widget = ({ id, title, icon, url }) => {
-  const [isPending, startTransition] = useTransition();
   const history = useHistory();
 
   const handleClick = () => {
-    startTransition(() => {
-      // Programmatically navigate to the specified URL
-      history.push(url);
-    });
+    history.push(url);
   };
 
   return (

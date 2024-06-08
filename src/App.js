@@ -23,15 +23,48 @@ function App() {
         <Suspense fallback={<Loading />}>
           <Switch>
             <Route path="/" exact component={HomePage} />
-            <SubPageLayout>
-              <Route path="/schedules" component={SchedulePage} />
-              <Route path="/contacts" component={ContactPage} />
-              <Route path="/faculties" component={FacultiesPage} />
-              <Route path="/wificonnection" component={WifiConnectionPage} />
-              <Route path="/campus" component={CampusPage} />
-              {/* Catch-all route for 404 Not Found */}
-            </SubPageLayout>
-            {/* <Route component={NotFoundPage} /> */}
+            <Route
+              path="/schedules"
+              render={(props) => (
+                <SubPageLayout>
+                  <SchedulePage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/contacts"
+              render={(props) => (
+                <SubPageLayout>
+                  <ContactPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/faculties"
+              render={(props) => (
+                <SubPageLayout>
+                  <FacultiesPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/wificonnection"
+              render={(props) => (
+                <SubPageLayout>
+                  <WifiConnectionPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/campus"
+              render={(props) => (
+                <SubPageLayout>
+                  <CampusPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            {/* Catch-all route for 404 Not Found */}
+            <Route component={NotFoundPage} />
           </Switch>
         </Suspense>
       </Router>

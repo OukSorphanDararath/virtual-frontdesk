@@ -7,7 +7,6 @@ import {
   FcDepartment,
   FcGraduationCap,
 } from "react-icons/fc";
-import { useRouteMatch } from "react-router-dom";
 
 const WidgetContent = () => {
   const widgetData = [
