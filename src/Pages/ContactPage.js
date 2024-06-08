@@ -14,11 +14,11 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="relative">
+    <div>
       <h1 className="text-3xl font-semibold my-8">Find PUC Contact</h1>
-      <div className="absolute left-0 -right-10 flex overflow-x-auto no-scrollbar flex-nowrap gap-5">
+      <div className="absolute left-0 right-0 flex overflow-x-auto no-scrollbar pl-10 py-4 flex-nowrap">
         {contactData.map((item) => (
-          <Card className="bg-white text-blue-900 relative">
+          <Card className="bg-white text-blue-900 relative mr-5">
             <div className="h-2/5 bg-gradient-to-t from-blue-200 px-6 py-4 relative">
               <img
                 src={pucLogo}

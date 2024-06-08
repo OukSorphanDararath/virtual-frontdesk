@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import Backdrop from "./Backdrop";
 
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,7 +51,6 @@ const LanguageSelector = () => {
           isOpen ? "scale-100 opacity-100" : "scale-95 opacity-0"
         }`}
       >
-        
         <div className="py-1">
           {languages.map((language) => (
             <button
@@ -61,19 +61,20 @@ const LanguageSelector = () => {
                 setIsOpen(false);
               }}
             >
-             <img width="36" height="36" src={language.icon} alt={language.name}/>{language?.name}
+              <img
+                width="36"
+                height="36"
+                src={language.icon}
+                alt={language.name}
+              />
+              {language?.name}
             </button>
           ))}
         </div>
       </div>
 
       {/* Backdrop */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 bg-black opacity-50 transition-opacity duration-200 ease-out z-20"
-          onClick={() => setIsOpen(false)}
-        ></div>
-      )}
+      {isOpen && <Backdrop onClick={() => setIsOpen(false)} />}
     </div>
   );
 };

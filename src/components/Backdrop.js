@@ -1,10 +1,10 @@
 import React from "react";
 
-const Backdrop = ({ onClose }) => {
+const Backdrop = ({ onClick }) => {
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black/30 z-0"
-      onClick={onClose}
+      className="fixed inset-0 bg-black opacity-50 transition-opacity duration-1000 ease-out z-20"
+      onClick={onClick}
     ></div>
   );
 };
