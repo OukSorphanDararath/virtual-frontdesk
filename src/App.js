@@ -1,11 +1,11 @@
 import "./App.css";
 import "../node_modules/flag-icons/css/flag-icons.min.css";
-import RoomNavigationPage from "./Pages/RoomNavigationPage";
-import { Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Suspense } from "react";
-import SubPageLayout from "./components/SubPageLayout";
 import Loading from "./components/Loading";
+import SubPageLayout from "./components/SubPageLayout";
 
+// Lazy loaded pages
 const HomePage = React.lazy(() => import("./Pages/HomePage"));
 const SchedulePage = React.lazy(() => import("./Pages/SchedulePage"));
 const ContactPage = React.lazy(() => import("./Pages/ContactPage"));
@@ -19,24 +19,24 @@ const WifiConnectionPage = React.lazy(() =>
 function App() {
   return (
     <div className="relative bg-gradient-to-t from-blue-700 to-blue-950 w-screen h-screen poppins-regular overflow-hidden text-white">
-      <Switch>
-        <Route path="/" exact component={HomePage} />
+      <Router>
         <Suspense fallback={<Loading />}>
-          <SubPageLayout>
-            <Route path="/schedules" component={SchedulePage} />
-            <Route path="/contacts" component={ContactPage} />
-            <Route path="/faculties" component={FacultiesPage} />
-            <Route path="/wificonnection" component={WifiConnectionPage} />
-            <Route path="/campus" component={CampusPage} />
-            <Route component={NotFoundPage} />
-          </SubPageLayout>
+          <Switch>
+            <Route path="/" exact component={HomePage} />
+            <SubPageLayout>
+              <Route path="/schedules" component={SchedulePage} />
+              <Route path="/contacts" component={ContactPage} />
+              <Route path="/faculties" component={FacultiesPage} />
+              <Route path="/wificonnection" component={WifiConnectionPage} />
+              <Route path="/campus" component={CampusPage} />
+              {/* Catch-all route for 404 Not Found */}
+            </SubPageLayout>
+            {/* <Route component={NotFoundPage} /> */}
+          </Switch>
         </Suspense>
-      </Switch>
-      {/* <RoomNavigationPage /> */}
+      </Router>
     </div>
   );
 }
 
 export default App;
-
-// {/* <span className={`fi fis fi-kh`} /> */}
