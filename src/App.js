@@ -2,8 +2,9 @@ import "./App.css";
 import "../node_modules/flag-icons/css/flag-icons.min.css";
 import RoomNavigationPage from "./Pages/RoomNavigationPage";
 import { Route, Switch } from "react-router-dom";
-import React from "react";
+import React, { Suspense } from "react";
 import SubPageLayout from "./components/SubPageLayout";
+import Loading from "./components/Loading";
 
 const HomePage = React.lazy(() => import("./Pages/HomePage"));
 const SchedulePage = React.lazy(() => import("./Pages/SchedulePage"));
@@ -20,14 +21,16 @@ function App() {
     <div className="relative bg-gradient-to-t from-blue-700 to-blue-950 w-screen h-screen poppins-regular overflow-hidden text-white">
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <SubPageLayout>
-          <Route path="/schedules" component={SchedulePage} />
-          <Route path="/contacts" component={ContactPage} />
-          <Route path="/faculties" component={FacultiesPage} />
-          <Route path="/wificonnection" component={WifiConnectionPage} />
-          <Route path="/campus" component={CampusPage} />
-          {/* <Route path="*" component={NotFoundPage} /> */}
-        </SubPageLayout>
+        <Suspense fallback={<Loading />}>
+          <SubPageLayout>
+            <Route path="/schedules" component={SchedulePage} />
+            <Route path="/contacts" component={ContactPage} />
+            <Route path="/faculties" component={FacultiesPage} />
+            <Route path="/wificonnection" component={WifiConnectionPage} />
+            <Route path="/campus" component={CampusPage} />
+            <Route component={NotFoundPage} />
+          </SubPageLayout>
+        </Suspense>
       </Switch>
       {/* <RoomNavigationPage /> */}
     </div>

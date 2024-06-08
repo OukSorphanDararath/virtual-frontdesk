@@ -7,33 +7,39 @@ import {
   FcDepartment,
   FcGraduationCap,
 } from "react-icons/fc";
+import { useRouteMatch } from "react-router-dom";
 
 const WidgetContent = () => {
   const widgetData = [
     {
       id: 1,
       title: "View Class Schedule",
-      icon: <FcPlanner size={80}/>,
+      url: "/schedules",
+      icon: <FcPlanner size={80} />,
     },
     {
       id: 2,
       title: "Contact Information",
-      icon: <FcCallback size={80}/>,
+      url: "/contacts",
+      icon: <FcCallback size={80} />,
     },
     {
       id: 3,
       title: "Connect to Free Wifi",
-      icon: <FcWiFiLogo size={80}/>,
+      url: "/wificonnection",
+      icon: <FcWiFiLogo size={80} />,
     },
     {
       id: 4,
       title: "Find PUC Campuses",
-      icon: <FcDepartment size={80}/>,
+      url: "/campus",
+      icon: <FcDepartment size={80} />,
     },
     {
       id: 5,
       title: "View PUC Faculty",
-      icon: <FcGraduationCap size={80}/>,
+      url: "/faculties",
+      icon: <FcGraduationCap size={80} />,
     },
   ];
 
@@ -44,7 +50,12 @@ const WidgetContent = () => {
       </h1>
       <div className="h-full grid grid-cols-3 gap-4">
         {widgetData.map((item) => (
-          <Widget id={item?.id} title={item?.title} icon={item?.icon} />
+          <Widget
+            id={item?.id}
+            title={item?.title}
+            icon={item?.icon}
+            url={item?.url}
+          />
         ))}
       </div>
     </div>
