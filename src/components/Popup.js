@@ -18,7 +18,13 @@ const Popup = ({
   }, []);
 
   return (
-    <div className={`fixed inset-0 flex items-center justify-center z-30`}>
+    <div
+      className={
+        disableBackDrop
+          ? "pt-10"
+          : `fixed inset-0 flex items-center justify-center z-30`
+      }
+    >
       {/* Backdrop */}
       {!disableBackDrop && <Backdrop />}
 
