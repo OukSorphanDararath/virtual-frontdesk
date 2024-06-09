@@ -1,10 +1,14 @@
 import React from "react";
 
-const Button = ({ onClick, text, className }) => {
+const Button = ({ onClick, text, className, customClass }) => {
   return (
     <button
       onClick={onClick}
-      className={`${className} bg-blue-800 hover:bg-blue-900 active:bg-blue-950 text-white text-center w-56 font-medium text-lg shadow-lg py-2 rounded-3xl transition-all duration-200`}
+      className={
+        customClass
+          ? `${customClass} text-lg shadow-lg py-2 rounded-3xl transition-all duration-200`
+          : `bg-blue-800 hover:bg-blue-900 active:bg-blue-950 text-white text-center w-56 font-medium text-lg shadow-lg py-2 rounded-3xl transition-all duration-200 ${className}`
+      }
       style={{
         transform: "scale(1)",
         transition: "transform 0.1s ease-in-out",

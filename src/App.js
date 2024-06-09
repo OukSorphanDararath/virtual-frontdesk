@@ -10,7 +10,7 @@ const HomePage = React.lazy(() => import("./Pages/HomePage"));
 const SchedulePage = React.lazy(() => import("./Pages/Schedule/SchedulePage"));
 const ContactPage = React.lazy(() => import("./Pages/ContactPage"));
 const FacultiesPage = React.lazy(() => import("./Pages/FacultiesPage"));
-const CampusPage = React.lazy(() => import("./Pages/CampusPage"));
+const CampusPage = React.lazy(() => import("./Pages/Campus/CampusPage"));
 const NotFoundPage = React.lazy(() => import("./Pages/NotFoundPage"));
 const WifiConnectionPage = React.lazy(() =>
   import("./Pages/WifiConnectionPage")
@@ -20,7 +20,13 @@ function App() {
   return (
     <div className="relative bg-gradient-to-t from-blue-700 to-blue-950 w-screen h-screen poppins-regular overflow-hidden text-white">
       <Router>
-        <Suspense fallback={<Loading />}>
+        <Suspense
+          fallback={
+            <SubPageLayout>
+              <Loading />
+            </SubPageLayout>
+          }
+        >
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route
