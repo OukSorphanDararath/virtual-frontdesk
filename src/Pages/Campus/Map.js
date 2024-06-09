@@ -20,6 +20,7 @@ const Map = () => {
           width="100%"
           height="500"
           className="rounded-lg border shadow-sm"
+          style={{ border: 0 }}
           allowFullScreen
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

@@ -1,5 +1,6 @@
 import React from "react";
 import Popup from "../components/Popup";
+import Loading from "../components/Loading";
 
 const WifiConnectionPage = () => {
   return (
@@ -12,6 +13,7 @@ const WifiConnectionPage = () => {
         imgSrc="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg"
       />
     </div>
+    // <Loading />
   );
 };
 
