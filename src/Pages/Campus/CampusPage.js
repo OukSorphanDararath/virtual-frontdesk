@@ -1,5 +1,4 @@
 import React from "react";
-import Card from "../../components/Card";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import CampusOverview from "./CampusOverview";
 

@@ -6,6 +6,7 @@ import {
   FcWiFiLogo,
   FcDepartment,
   FcGraduationCap,
+  FcOrganization 
 } from "react-icons/fc";
 
 const WidgetContent = () => {
@@ -39,6 +40,12 @@ const WidgetContent = () => {
       title: "View PUC Faculty",
       url: "/faculties",
       icon: <FcGraduationCap size={80} />,
+    },
+    {
+      id: 6,
+      title: "Find Room",
+      url: "/find_room",
+      icon: <FcOrganization size={80} />,
     },
   ];
 

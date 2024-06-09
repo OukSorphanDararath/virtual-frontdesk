@@ -12,6 +12,9 @@ const ContactPage = React.lazy(() => import("./Pages/ContactPage"));
 const FacultiesPage = React.lazy(() => import("./Pages/FacultiesPage"));
 const CampusPage = React.lazy(() => import("./Pages/Campus/CampusPage"));
 const NotFoundPage = React.lazy(() => import("./Pages/NotFoundPage"));
+const RoomNavigationPage = React.lazy(() =>
+  import("./Pages/RoomNavigationPage")
+);
 const WifiConnectionPage = React.lazy(() =>
   import("./Pages/WifiConnectionPage")
 );
@@ -66,6 +69,14 @@ function App() {
               render={(props) => (
                 <SubPageLayout>
                   <CampusPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/find_room"
+              render={(props) => (
+                <SubPageLayout>
+                  <RoomNavigationPage {...props} />
                 </SubPageLayout>
               )}
             />

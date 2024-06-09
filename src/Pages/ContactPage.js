@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Card from "../components/Card";
 import pucLogo from "../assets/puc-logo.png";
 import Button from "../components/Button";
 import { MdQrCodeScanner } from "react-icons/md";
+import Popup from "../components/Popup";
 
 const ContactPage = () => {
+  const [showQRcode, setShowQRcode] = useState(false);
+
   const contactData = [
     { title: "DAA OFFICE", mobile: "017 392 169", telegram: "017 392 169" },
     { title: "Registra", mobile: "017 392 169", telegram: "017 392 169" },
@@ -38,7 +41,12 @@ const ContactPage = () => {
               <div className="flex flex-col gap-3 relative">
                 <span className="font-normal">Telegram</span>
                 <span className="font-semibold text-2xl">{item?.telegram}</span>
-                <MdQrCodeScanner size={50} className="absolute right-0 top-2" />
+                <button onClick={() => setShowQRcode(true)}>
+                  <MdQrCodeScanner
+                    size={50}
+                    className="absolute right-0 top-2"
+                  />
+                </button>
               </div>
               <div className="flex justify-center absolute bottom-6 left-0 right-0">
                 <Button text={"Call"} />
@@ -47,6 +55,16 @@ const ContactPage = () => {
           </Card>
         ))}
       </div>
+
+      {showQRcode && (
+        <Popup
+          onButtonClick={() => setShowQRcode(false)}
+          isDescriptionOnTop={true}
+          title="Scan the QR Code"
+          description="Scan This QR code for Contact"
+          imgSrc="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg"
+        />
+      )}
     </div>
   );
 };
