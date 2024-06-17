@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import Card from "../components/Card";
-import pucLogo from "../assets/puc-logo.png";
-import Button from "../components/Button";
+import Card from "../../components/Card";
+import pucLogo from "../../assets/puc-logo.png";
+import Button from "../../components/Button";
 import { MdQrCodeScanner } from "react-icons/md";
-import Popup from "../components/Popup";
-import { contactData } from "../data/dataSource";
+import Popup from "../../components/Popup";
+import { contactData } from "../../data/dataSource";
 
 const ContactPage = () => {
   const [showQRcode, setShowQRcode] = useState(false);

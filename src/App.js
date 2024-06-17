@@ -8,7 +8,7 @@ import SubPageLayout from "./components/SubPageLayout";
 // Lazy loaded pages
 const HomePage = React.lazy(() => import("./Pages/HomePage"));
 const SchedulePage = React.lazy(() => import("./Pages/Schedule/SchedulePage"));
-const ContactPage = React.lazy(() => import("./Pages/ContactPage"));
+const ContactPage = React.lazy(() => import("./Pages/Contact/ContactPage"));
 const FacultiesPage = React.lazy(() => import("./Pages/FacultiesPage"));
 const CampusPage = React.lazy(() => import("./Pages/Campus/CampusPage"));
 const NotFoundPage = React.lazy(() => import("./Pages/NotFoundPage"));
@@ -18,6 +18,7 @@ const RoomNavigationPage = React.lazy(() =>
 const WifiConnectionPage = React.lazy(() =>
   import("./Pages/WifiConnectionPage")
 );
+const ClientCall = React.lazy(() => import("./Pages/Contact/ClientCall"));
 
 function App() {
   return (
@@ -77,6 +78,14 @@ function App() {
               render={(props) => (
                 <SubPageLayout>
                   <RoomNavigationPage {...props} />
+                </SubPageLayout>
+              )}
+            />
+            <Route
+              path="/call"
+              render={(props) => (
+                <SubPageLayout>
+                  <ClientCall {...props} />
                 </SubPageLayout>
               )}
             />
