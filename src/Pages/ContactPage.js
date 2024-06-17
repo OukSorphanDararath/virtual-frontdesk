@@ -4,17 +4,10 @@ import pucLogo from "../assets/puc-logo.png";
 import Button from "../components/Button";
 import { MdQrCodeScanner } from "react-icons/md";
 import Popup from "../components/Popup";
+import { contactData } from "../data/dataSource";
 
 const ContactPage = () => {
   const [showQRcode, setShowQRcode] = useState(false);
-
-  const contactData = [
-    { title: "DAA OFFICE", mobile: "017 392 169", telegram: "017 392 169" },
-    { title: "Registra", mobile: "017 392 169", telegram: "017 392 169" },
-    { title: "Head Office", mobile: "017 392 169", telegram: "017 392 169" },
-    { title: "Library", mobile: "017 392 169", telegram: "017 392 169" },
-    { title: "DAA OFFICE", mobile: "017 392 169", telegram: "017 392 169" },
-  ];
 
   return (
     <div>
@@ -44,7 +37,7 @@ const ContactPage = () => {
                 <button onClick={() => setShowQRcode(true)}>
                   <MdQrCodeScanner
                     size={50}
-                    className="absolute right-0 top-2"
+                    className="absolute right-0 top-2"  
                   />
                 </button>
               </div>

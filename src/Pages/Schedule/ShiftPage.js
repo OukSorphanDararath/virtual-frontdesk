@@ -1,14 +1,41 @@
-import React from "react";
-import evening from "../../assets/evening-shift.pdf";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
-const ShiftPage = () => {
+const ShiftPage = ({ match }) => {
+  const [filePath, setFilePath] = useState();
+  const [pdfUrl, setPdfUrl] = useState("");
+  const { params } = match;
+  const shift = params.shift;
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:6600/schedules/${shift}`)
+      .then((response) => {
+        setFilePath(response.data.pdf);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, [shift]);
+
+  useEffect(() => {
+    if (filePath)
+      axios
+        .get(`http://localhost:6600/files/${filePath}`, {
+          responseType: "blob", // Important for handling binary data
+        })
+        .then((response) => {
+          const url = URL.createObjectURL(response.data);
+          setPdfUrl(url);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }, [filePath]);
+
   return (
     <div className="h-full w-full border border-white/20 bg-white/20 rounded-xl overflow-hidden">
-      <iframe
-        src={evening}
-        title="classSchedule"
-        className="w-full h-full"
-      />
+      <iframe src={pdfUrl} title="classSchedule" className="w-full h-full" />
     </div>
   );
 };

@@ -26,7 +26,7 @@ const Popup = ({
       }
     >
       {/* Backdrop */}
-      {!disableBackDrop && <Backdrop />}
+      {!disableBackDrop && <Backdrop onClick={onButtonClick} />}
 
       {/* Popup Container */}
       <div

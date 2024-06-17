@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../../components/Button";
+import Popup from "../../components/Popup";
 
 const Map = () => {
+  const [showQRcode, setShowQRcode] = useState(false);
+
   return (
     <div className="w-full h-full">
       <div className="flex justify-between items-center">
@@ -11,6 +14,7 @@ const Map = () => {
           customClass={
             "bg-white self-end mb-4 text-blue-900 w-80 font-semibold hover:bg-gray-100 active:bg-gray-200"
           }
+          onClick={() => setShowQRcode(true)}
         />
       </div>
       <div>
@@ -26,6 +30,16 @@ const Map = () => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+
+      {showQRcode && (
+        <Popup
+          onButtonClick={() => setShowQRcode(false)}
+          isDescriptionOnTop={true}
+          title="Scan the QR Code"
+          description="Scan This QR code for Location"
+          imgSrc="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg"
+        />
+      )}
     </div>
   );
 };

@@ -1,18 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
+import axios from "axios";
 
 const ShiftPage = React.lazy(() => import("./ShiftPage"));
 const ScheduleOverview = React.lazy(() => import("./ScheduleOverview"));
 
 const SchedulePage = () => {
+  const [scheduleData, setScheduleData] = useState();
   let { path } = useRouteMatch();
 
-  const scheduleData = [
-    { id: 0, title: "Morning", url: `morning` },
-    { id: 1, title: "Afternoon", url: `afternoon` },
-    { id: 2, title: "Evening", url: `evening` },
-    { id: 3, title: "Graduate Program", url: `graduate-program` },
-  ];
+  useEffect(() => {
+    axios
+      .get("http://localhost:6600/schedules")
+      .then((response) => {
+        setScheduleData(response.data.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
 
   return (
     <div className="h-full">
