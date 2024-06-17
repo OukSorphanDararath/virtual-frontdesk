@@ -46,9 +46,13 @@ const Carousel = ({ data, interval = 5000 }) => {
                 className="w-8/12 h-full float-end object-cover opacity-100 transition-opacity"
               />
               <div className="absolute inset-0 pl-8 bg-gradient-to-r from-blue-900 from-10% via-blue-800 via-40% to-transparent to-90% flex items-center p-4 opacity-100 transition-opacity">
-                <div className={`text-white text-xl leading-relaxed poppins-regular w-6/12 transition-all duration-1000 line-clamp-3 ${
-                    isTransitioning ? "opacity-0 translate-y-2" : "opacity-100 translate-y-0"
-                  }`}>
+                <div
+                  className={`text-white text-xl leading-relaxed poppins-regular w-6/12 transition-all duration-1000 line-clamp-3 ${
+                    isTransitioning
+                      ? "opacity-0 translate-y-2"
+                      : "opacity-100 translate-y-0"
+                  }`}
+                >
                   {item.title}
                 </div>
               </div>

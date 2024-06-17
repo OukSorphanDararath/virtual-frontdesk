@@ -1,6 +1,6 @@
 import React from "react";
 import MainHeader from "../components/MainHeader";
-import Carousel from "../components/carousel";
+import Carousel from "../components/Carousel";
 import WidgetContent from "../components/WidgetContent";
 import Announcement from "../components/Announcement";
 import { carouselData } from "../data/dataSource";
