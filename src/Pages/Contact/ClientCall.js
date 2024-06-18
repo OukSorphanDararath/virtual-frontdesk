@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import io from "socket.io-client";
 
-const socket = io("http://localhost:6600"); // Replace with your server URL
+const apiBaseUrl = process.env.REACT_APP_API_KEY;
+
+const socket = io(apiBaseUrl); // Replace with your server URL
 
 const ClientCall = () => {
   const [localStream, setLocalStream] = useState(null);

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+const apiBaseUrl = process.env.REACT_APP_API_KEY;
+
 const ShiftPage = ({ match }) => {
   const [filePath, setFilePath] = useState();
   const [pdfUrl, setPdfUrl] = useState("");
@@ -9,7 +11,7 @@ const ShiftPage = ({ match }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:6600/schedules/${shift}`)
+      .get(`${apiBaseUrl}/schedules/${shift}`)
       .then((response) => {
         setFilePath(response.data.pdf);
       })
@@ -21,7 +23,7 @@ const ShiftPage = ({ match }) => {
   useEffect(() => {
     if (filePath)
       axios
-        .get(`http://localhost:6600/files/${filePath}`, {
+        .get(`${apiBaseUrl}/files/${filePath}`, {
           responseType: "blob", // Important for handling binary data
         })
         .then((response) => {

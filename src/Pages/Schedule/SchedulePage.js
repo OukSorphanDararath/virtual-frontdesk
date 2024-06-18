@@ -1,17 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import axios from "axios";
+const apiBaseUrl = process.env.REACT_APP_API_KEY;
 
 const ShiftPage = React.lazy(() => import("./ShiftPage"));
 const ScheduleOverview = React.lazy(() => import("./ScheduleOverview"));
 
 const SchedulePage = () => {
   const [scheduleData, setScheduleData] = useState();
+
   let { path } = useRouteMatch();
+
+  console.log(apiBaseUrl);
 
   useEffect(() => {
     axios
-      .get("http://localhost:6600/schedules")
+      .get(`${apiBaseUrl}/schedules`)
       .then((response) => {
         setScheduleData(response.data.data);
       })
