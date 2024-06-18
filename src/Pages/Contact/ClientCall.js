@@ -1,108 +1,208 @@
-import React, { useEffect, useState, useRef } from "react";
-import io from "socket.io-client";
+import { initializeApp } from "firebase/app";
+import {
+  getFirestore,
+  collection,
+  doc,
+  setDoc,
+  onSnapshot,
+  deleteDoc,
+  addDoc,
+} from "firebase/firestore";
+import React, { useState, useRef, useEffect } from "react";
 
-const apiBaseUrl = process.env.REACT_APP_API_KEY;
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "YOUR_API_KEY",
+  authDomain: "rtcpuc.firebaseapp.com",
+  projectId: "rtcpuc",
+  storageBucket: "rtcpuc.appspot.com",
+  messagingSenderId: "874247322664",
+  appId: "1:874247322664:web:50eefe2040da46636f891d",
+  measurementId: "G-R0KP2TRQTE",
+};
 
-const socket = io(apiBaseUrl); // Replace with your server URL
+// Initialize Firebase app instance
+const app = initializeApp(firebaseConfig);
+const firestore = getFirestore(app);
+
+// RTC configuration
+const servers = {
+  iceServers: [
+    {
+      urls: ["stun:stun1.l.google.com:19302", "stun:stun2.l.google.com:19302"],
+    },
+  ],
+  iceCandidatePoolSize: 10,
+};
 
 const ClientCall = () => {
+  const [pc] = useState(new RTCPeerConnection(servers));
   const [localStream, setLocalStream] = useState(null);
-  const [calling, setCalling] = useState(false);
-  const [callAccepted, setCallAccepted] = useState(false);
-  const videoRef = useRef(null);
-  const peerConnectionRef = useRef(null);
+  const [remoteStream] = useState(new MediaStream());
+  const [callId, setCallId] = useState("");
+  const [callStatus, setCallStatus] = useState("idle"); // idle, calling, ongoing
+  const [isWebcamButtonDisabled, setIsWebcamButtonDisabled] = useState(false);
 
-  useEffect(() => {
-    const setupLocalStream = async () => {
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({
-          video: true,
-          audio: true,
-        });
-        setLocalStream(stream);
-        if (videoRef.current) {
-          videoRef.current.srcObject = stream;
-        }
-      } catch (error) {
-        console.error("Error accessing media devices:", error);
-        alert(`Error accessing media devices: ${error.message}`);
-      }
-    };
+  const localVideoRef = useRef(null);
+  const remoteVideoRef = useRef(null);
 
-    setupLocalStream();
+  // Function to start webcam and initialize local media stream
+  const startWebcam = async () => {
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+      setLocalStream(stream);
+      setIsWebcamButtonDisabled(true);
+    } catch (error) {
+      console.error("Error accessing media devices.", error);
+    }
+  };
 
-    socket.on("answer", async (answer) => {
-      const pc = peerConnectionRef.current;
-      if (pc) {
-        await pc.setRemoteDescription(new RTCSessionDescription(answer));
-        setCallAccepted(true);
-      }
-    });
+  // Function to initiate a call
+  const initiateCall = async () => {
+    setCallStatus("calling");
+    const callDocRef = doc(collection(firestore, "calls"));
+    const offerCandidatesRef = collection(callDocRef, "offerCandidates");
 
-    socket.on("icecandidate", async (candidate) => {
-      const pc = peerConnectionRef.current;
-      if (pc && candidate) {
-        await pc.addIceCandidate(new RTCIceCandidate(candidate));
-      }
-    });
-
-    return () => {
-      if (localStream) {
-        localStream.getTracks().forEach((track) => track.stop());
-        setLocalStream(null);
-      }
-      if (peerConnectionRef.current) {
-        peerConnectionRef.current.close();
-        peerConnectionRef.current = null;
-      }
-      socket.off("answer");
-      socket.off("icecandidate");
-    };
-  }, []);
-
-  const handleCall = async () => {
-    if (!localStream) return;
-
-    const pc = new RTCPeerConnection();
-    peerConnectionRef.current = pc;
-
-    localStream.getTracks().forEach((track) => pc.addTrack(track, localStream));
+    setCallId(callDocRef.id);
 
     pc.onicecandidate = (event) => {
-      if (event.candidate) {
-        socket.emit("icecandidate", event.candidate);
-      }
+      event.candidate && addDoc(offerCandidatesRef, event.candidate.toJSON());
     };
 
-    try {
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-      socket.emit("offer", offer);
-      setCalling(true);
-    } catch (error) {
-      console.error("Error creating offer.", error);
+    const offerDescription = await pc.createOffer();
+    await pc.setLocalDescription(offerDescription);
+
+    const offer = {
+      sdp: offerDescription.sdp,
+      type: offerDescription.type,
+    };
+
+    await setDoc(callDocRef, { offer });
+
+    // Store call ID in shared collection
+    const sharedDocRef = doc(collection(firestore, "shared"), "callId");
+    await setDoc(sharedDocRef, { id: callDocRef.id });
+
+    onSnapshot(callDocRef, (snapshot) => {
+      const data = snapshot.data();
+      if (data?.answer) {
+        const answerDescription = new RTCSessionDescription(data.answer);
+        pc.setRemoteDescription(answerDescription);
+        setCallStatus("ongoing");
+      }
+    });
+  };
+
+  // Function to cancel a call
+  const cancelCall = async () => {
+    if (callId) {
+      // Delete call document
+      await deleteDoc(doc(firestore, "calls", callId));
+
+      // Remove call ID from shared collection
+      const sharedDocRef = doc(collection(firestore, "shared"), "callId");
+      await deleteDoc(sharedDocRef);
+
+      setCallId("");
+      setCallStatus("idle");
     }
   };
 
-  const handleCloseCall = () => {
-    if (peerConnectionRef.current) {
-      peerConnectionRef.current.close();
-      peerConnectionRef.current = null;
+  // Function to hang up the call
+  const hangUp = async () => {
+    pc.close();
+    if (callId) {
+      // Delete call document
+      await deleteDoc(doc(firestore, "calls", callId));
+
+      // Remove call ID from shared collection
+      const sharedDocRef = doc(collection(firestore, "shared"), "callId");
+      await deleteDoc(sharedDocRef);
     }
-    setCalling(false);
-    setCallAccepted(false);
+    setLocalStream(null);
+    setCallStatus("idle");
+    setIsWebcamButtonDisabled(false);
+    if (localVideoRef.current) localVideoRef.current.srcObject = null;
+    if (remoteVideoRef.current) localVideoRef.current.srcObject = null;
   };
+
+  // useEffect to handle setting up and tearing down media streams
+  useEffect(() => {
+    if (localStream) {
+      localStream.getTracks().forEach((track) => {
+        pc.addTrack(track, localStream);
+      });
+
+      pc.ontrack = (event) => {
+        event.streams[0].getTracks().forEach((track) => {
+          remoteStream.addTrack(track);
+        });
+      };
+
+      if (localVideoRef.current) {
+        localVideoRef.current.srcObject = localStream;
+      }
+
+      if (remoteVideoRef.current) {
+        remoteVideoRef.current.srcObject = remoteStream;
+      }
+    }
+  }, [localStream, pc, remoteStream]);
 
   return (
     <div>
-      <h1>Client Side</h1>
-      {localStream && <video ref={videoRef} autoPlay />}
-      {!calling && !callAccepted && (
-        <button onClick={handleCall}>Call Admin</button>
-      )}
-      {(calling || callAccepted) && (
-        <button onClick={handleCloseCall}>Close Call</button>
-      )}
+      <h1>WebRTC Client Call</h1>
+      <div>
+        <button
+          id="webcamButton"
+          onClick={startWebcam}
+          disabled={isWebcamButtonDisabled}
+        >
+          Start Webcam
+        </button>
+        <video
+          id="webcamVideo"
+          autoPlay
+          playsInline
+          ref={localVideoRef}
+          style={{ width: "300px" }}
+        />
+      </div>
+      <div>
+        {callStatus === "idle" && (
+          <button id="callButton" onClick={initiateCall}>
+            Call
+          </button>
+        )}
+        {callStatus === "calling" && (
+          <>
+            <p>Calling...</p>
+            <button id="cancelCallButton" onClick={cancelCall}>
+              Cancel Call
+            </button>
+          </>
+        )}
+        {callStatus === "ongoing" && (
+          <>
+            <p>Call in Progress</p>
+            <button id="hangupButton" onClick={hangUp}>
+              Hang Up
+            </button>
+          </>
+        )}
+      </div>
+      <div>
+        <video
+          id="remoteVideo"
+          autoPlay
+          playsInline
+          ref={remoteVideoRef}
+          style={{ width: "300px" }}
+        />
+      </div>
     </div>
   );
 };
