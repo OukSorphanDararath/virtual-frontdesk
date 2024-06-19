@@ -5,9 +5,12 @@ import Button from "../../components/Button";
 import { MdQrCodeScanner } from "react-icons/md";
 import Popup from "../../components/Popup";
 import { contactData } from "../../data/dataSource";
+import { useHistory } from "react-router-dom";
 
 const ContactPage = () => {
   const [showQRcode, setShowQRcode] = useState(false);
+
+  const history = useHistory();
 
   return (
     <div>
@@ -37,12 +40,12 @@ const ContactPage = () => {
                 <button onClick={() => setShowQRcode(true)}>
                   <MdQrCodeScanner
                     size={50}
-                    className="absolute right-0 top-2"  
+                    className="absolute right-0 top-2"
                   />
                 </button>
               </div>
               <div className="flex justify-center absolute bottom-6 left-0 right-0">
-                <Button text={"Call"} />
+                <Button text={"Call"} onClick={() => history.push("/call")} />
               </div>
             </div>
           </Card>
