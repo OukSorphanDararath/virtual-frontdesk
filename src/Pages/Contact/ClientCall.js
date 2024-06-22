@@ -1,5 +1,6 @@
+// ClientCall.js
+
 import React, { useState, useEffect, useRef } from "react";
-import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
@@ -9,27 +10,14 @@ import {
   addDoc,
   onSnapshot,
 } from "firebase/firestore";
+import { app, firestore } from "../../config/firebase"; // Import from the created firebase.js file
+
 import "tailwindcss/tailwind.css";
 import { IoCall } from "react-icons/io5";
 import { FaPhoneSlash } from "react-icons/fa6";
 import { PiWebcamDuotone, PiWebcamSlashDuotone } from "react-icons/pi";
 
 import Button from "../../components/Button";
-
-// Firebase configuration
-const firebaseConfig = {
-  apiKey: "AIzaSyAdl8RxTB2X4E4PdR6lUNw0YCOVBPFgo8w",
-  authDomain: "rtcpuc.firebaseapp.com",
-  projectId: "rtcpuc",
-  storageBucket: "rtcpuc.appspot.com",
-  messagingSenderId: "874247322664",
-  appId: "1:874247322664:web:50eefe2040da46636f891d",
-  measurementId: "G-R0KP2TRQTE",
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const firestore = getFirestore(app);
 
 const ClientCall = () => {
   const [localStream, setLocalStream] = useState(null);
