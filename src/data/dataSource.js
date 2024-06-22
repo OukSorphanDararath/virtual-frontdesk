@@ -1,5 +1,6 @@
 import firstFloor from "../assets/first-floor.png";
 import room101 from "../assets/room101.png";
+import bis from "../assets/bis.pdf";
 
 export const floorAndRoomData = [
   {
@@ -142,39 +143,87 @@ export const contactData = [
 
 export const facultiesData = [
   {
+    id: 1,
     title: "Faculty of Business & Economic",
     image:
       "https://media.licdn.com/dms/image/D5612AQEvQU5DTiGRqw/article-cover_image-shrink_720_1280/0/1679896039793?e=2147483647&v=beta&t=2gERJ83GKjVDsiVTRtBiIpWTjsnGQPknygdCFJr0NAU",
+    major: [
+      { id: 1, name: "Business Information System", pdf: bis },
+      { id: 2, name: "Business Administration", pdf: bis },
+      { id: 3, name: "Economics", pdf: bis },
+      { id: 4, name: "Finance", pdf: bis },
+      { id: 5, name: "Marketing", pdf: bis },
+    ],
   },
   {
+    id: 2,
     title: "Faculty of Education",
     image:
       "https://t3.ftcdn.net/jpg/05/75/22/58/360_F_575225818_PQ2ZPHFw51yCcmieutB5bT843nPAPzo3.jpg",
+    major: [
+      { id: 1, name: "Curriculum and Instruction", pdf: bis },
+      { id: 2, name: "Educational Leadership", pdf: bis },
+      { id: 3, name: "Special Education", pdf: bis },
+      { id: 4, name: "Early Childhood Education", pdf: bis },
+    ],
   },
   {
+    id: 3,
     title: "Faculty of Mathematic Science and Engineering",
-    image:
-      "https://www.rocketlawyer.com/binaries/content/gallery/guide-hero-images/GB/video-recording-break-the-law.jpg",
+    image: "https://images.pexels.com/photos/3862137/pexels-photo-3862137.jpeg",
+    major: [
+      { id: 1, name: "Mathematics", pdf: bis },
+      { id: 2, name: "Computer Science", pdf: bis },
+      { id: 3, name: "Electrical Engineering", pdf: bis },
+      { id: 4, name: "Mechanical Engineering", pdf: bis },
+    ],
   },
   {
+    id: 4,
     title: "Faculty of Arts, Letters, and Humanities",
-    image:
-      "https://media.licdn.com/dms/image/D5612AQEvQU5DTiGRqw/article-cover_image-shrink_720_1280/0/1679896039793?e=2147483647&v=beta&t=2gERJ83GKjVDsiVTRtBiIpWTjsnGQPknygdCFJr0NAU",
+    image: "https://images.unsplash.com/photo-1593642532904-0d106b6d21d8",
+    major: [
+      { id: 1, name: "Literature", pdf: bis },
+      { id: 2, name: "Philosophy", pdf: bis },
+      { id: 3, name: "History", pdf: bis },
+      { id: 4, name: "Linguistics", pdf: bis },
+      { id: 5, name: "Creative Writing", pdf: bis },
+    ],
   },
   {
+    id: 5,
     title: "Faculty of Law and Public Affairs",
-    image:
-      "https://t3.ftcdn.net/jpg/05/75/22/58/360_F_575225818_PQ2ZPHFw51yCcmieutB5bT843nPAPzo3.jpg",
+    image: "https://images.pexels.com/photos/5642712/pexels-photo-5642712.jpeg",
+    major: [
+      { id: 1, name: "Law", pdf: bis },
+      { id: 2, name: "Political Science", pdf: bis },
+      { id: 3, name: "International Relations", pdf: bis },
+      { id: 4, name: "Public Policy", pdf: bis },
+    ],
   },
   {
+    id: 6,
     title: "Faculty of Communication & Media Arts",
-    image:
-      "https://www.rocketlawyer.com/binaries/content/gallery/guide-hero-images/GB/video-recording-break-the-law.jpg",
+    image: "https://images.pexels.com/photos/3671137/pexels-photo-3671137.jpeg",
+    major: [
+      { id: 1, name: "Journalism", pdf: bis },
+      { id: 2, name: "Media Studies", pdf: bis },
+      { id: 3, name: "Public Relations", pdf: bis },
+      { id: 4, name: "Advertising", pdf: bis },
+      { id: 5, name: "Film and Television Production", pdf: bis },
+    ],
   },
   {
+    id: 7,
     title: "Faculty of Social Science and International Relations",
-    image:
-      "https://media.licdn.com/dms/image/D5612AQEvQU5DTiGRqw/article-cover_image-shrink_720_1280/0/1679896039793?e=2147483647&v=beta&t=2gERJ83GKjVDsiVTRtBiIpWTjsnGQPknygdCFJr0NAU",
+    image: "https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg",
+    major: [
+      { id: 1, name: "Sociology", pdf: bis },
+      { id: 2, name: "Anthropology", pdf: bis },
+      { id: 3, name: "Psychology", pdf: bis },
+      { id: 4, name: "International Studies", pdf: bis },
+      { id: 5, name: "Development Studies", pdf: bis },
+    ],
   },
 ];
 

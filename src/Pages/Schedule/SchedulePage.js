@@ -11,8 +11,6 @@ const SchedulePage = () => {
 
   let { path } = useRouteMatch();
 
-  console.log(apiBaseUrl);
-
   useEffect(() => {
     axios
       .get(`${apiBaseUrl}/schedules`)

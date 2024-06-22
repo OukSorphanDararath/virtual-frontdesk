@@ -9,7 +9,9 @@ import SubPageLayout from "./components/SubPageLayout";
 const HomePage = React.lazy(() => import("./Pages/HomePage"));
 const SchedulePage = React.lazy(() => import("./Pages/Schedule/SchedulePage"));
 const ContactPage = React.lazy(() => import("./Pages/Contact/ContactPage"));
-const FacultiesPage = React.lazy(() => import("./Pages/FacultiesPage"));
+const FacultiesPage = React.lazy(() =>
+  import("./Pages/Faculties/FacultiesPage")
+);
 const CampusPage = React.lazy(() => import("./Pages/Campus/CampusPage"));
 const NotFoundPage = React.lazy(() => import("./Pages/NotFoundPage"));
 const RoomNavigationPage = React.lazy(() =>
