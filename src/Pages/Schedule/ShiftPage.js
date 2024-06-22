@@ -4,7 +4,7 @@ import axios from "axios";
 const apiBaseUrl = process.env.REACT_APP_API_KEY;
 
 const ShiftPage = ({ match }) => {
-  const [filePath, setFilePath] = useState();
+  // const [filePath, setFilePath] = useState();
   const [pdfUrl, setPdfUrl] = useState("");
   const { params } = match;
   const shift = params.shift;
@@ -13,27 +13,27 @@ const ShiftPage = ({ match }) => {
     axios
       .get(`${apiBaseUrl}/schedules/${shift}`)
       .then((response) => {
-        setFilePath(response.data.pdf);
+        setPdfUrl(response?.data?.pdfPath);
       })
       .catch((error) => {
         console.error("There was an error fetching the data!", error);
       });
   }, [shift]);
 
-  useEffect(() => {
-    if (filePath)
-      axios
-        .get(`${apiBaseUrl}/files/${filePath}`, {
-          responseType: "blob", // Important for handling binary data
-        })
-        .then((response) => {
-          const url = URL.createObjectURL(response.data);
-          setPdfUrl(url);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-  }, [filePath]);
+  // useEffect(() => {
+  //   if (filePath)
+  //     axios
+  //       .get(`${apiBaseUrl}/files/${filePath}`, {
+  //         responseType: "blob", // Important for handling binary data
+  //       })
+  //       .then((response) => {
+  //         const url = URL.createObjectURL(response.data);
+  //         setPdfUrl(url);
+  //       })
+  //       .catch((error) => {
+  //         console.log(error);
+  //       });
+  // }, [filePath]);
 
   return (
     <div className="h-full w-full border border-white/20 bg-white/20 rounded-xl overflow-hidden">

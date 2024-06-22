@@ -199,7 +199,7 @@ const ClientCall = () => {
         </div>
       </div>
       <div className="basis-2/6 w-full h-full ">
-        <div className="border-2 border-gray-500 rounded-lg h-80 overflow-hidden">
+        <div className="border-2 border-gray-500 rounded-2xl h-80 overflow-hidden">
           <video
             ref={localVideoRef}
             autoPlay
@@ -213,7 +213,7 @@ const ClientCall = () => {
             <div className="gap-4 flex flex-col justify-center items-center">
               <Button
                 onClick={startWebcam}
-                className="px-4 py-2 bg-green-500 w-56 text-white rounded flex items-center justify-center gap-2 hover:bg-gray-600"
+                className="px-4 py-2 bg-green-600 w-56 text-white rounded flex items-center justify-center gap-2 hover:bg-green-700"
                 text={
                   <>
                     <PiWebcamDuotone size={26} />
