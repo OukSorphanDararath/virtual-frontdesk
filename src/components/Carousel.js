@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Carousel = ({ data, interval = 5000 }) => {
+const Carousel = ({ data, interval = 5000, className }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -30,7 +30,11 @@ const Carousel = ({ data, interval = 5000 }) => {
   };
 
   return (
-    <div className="h-full col-span-2 relative rounded-2xl shadow-[rgba(0,_0,_0,_0.24)_0px_10px_8px]">
+    <div
+      className={`h-full relative rounded-2xl shadow-[rgba(0,_0,_0,_0.24)_0px_10px_8px] ${
+        className ? className : "col-span-2"
+      }`}
+    >
       <div className="relative h-full overflow-hidden rounded-2xl border-2">
         <div
           className={`absolute inset-0 flex transition-opacity duration-500 ${
