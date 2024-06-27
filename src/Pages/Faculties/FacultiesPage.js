@@ -14,14 +14,14 @@ const FacultiesPage = () => {
   return (
     <div className="h-full">
       <Switch>
+        <Route
+          path={`${path}/:major/:curriculum`}
+          component={MajorCurriculum}
+        />
+        <Route path={`${path}/:major`} component={MajorOverview} />
         <Route exact path={path}>
           <FacultiesOverview facultiesData={facultiesData} />
         </Route>
-        <Route path={`${path}/:major`} component={MajorOverview} />
-        <Route
-          path="/faculties/:major/:curriculum"
-          component={MajorCurriculum}
-        />
       </Switch>
     </div>
   );
