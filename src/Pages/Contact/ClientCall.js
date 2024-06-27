@@ -1,5 +1,3 @@
-// ClientCall.js
-
 import React, { useState, useEffect, useRef } from "react";
 import {
   getFirestore,
@@ -9,6 +7,7 @@ import {
   deleteDoc,
   addDoc,
   onSnapshot,
+  getDoc,
 } from "firebase/firestore";
 import { app, firestore } from "../../config/firebase"; // Import from the created firebase.js file
 
@@ -43,13 +42,29 @@ const ClientCall = () => {
   const remoteVideoRef = useRef(null);
 
   useEffect(() => {
-    if (localStream) {
-      localVideoRef.current.srcObject = localStream;
+    // Periodically check the shared call ID only if there's an ongoing call
+    const interval = isCalling
+      ? setInterval(() => {
+          checkSharedCallId();
+        }, 3000)
+      : null;
+
+    return () => clearInterval(interval);
+  }, [isCalling]);
+
+  const checkSharedCallId = async () => {
+    try {
+      const sharedCallIdDoc = doc(firestore, "shared", "callId");
+      const docSnapshot = await getDoc(sharedCallIdDoc);
+
+      if (!docSnapshot.exists() || !docSnapshot.data().id) {
+        // If call ID does not exist or is empty, cancel the call
+        cancelCall();
+      }
+    } catch (error) {
+      console.error("Error checking shared call ID:", error);
     }
-    if (remoteStream) {
-      remoteVideoRef.current.srcObject = remoteStream;
-    }
-  }, [localStream, remoteStream]);
+  };
 
   const startWebcam = async () => {
     try {

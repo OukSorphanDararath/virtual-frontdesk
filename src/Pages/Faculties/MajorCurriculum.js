@@ -7,7 +7,7 @@ const MajorCurriculum = () => {
 
   return (
     <div className="h-full w-full border border-white/20 bg-white/20 rounded-xl overflow-hidden">
-        <iframe src={pdf} title="classSchedule" className="w-full h-full" />
+      <iframe src={pdf} title="classSchedule" className="w-full h-full" />
     </div>
   );
 };
