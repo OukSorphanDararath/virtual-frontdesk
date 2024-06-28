@@ -13,7 +13,7 @@ const HomePage = () => {
       {/* MAIN CONTENT */}
       <div className="flex-none h-48 grid grid-cols-3 gap-4">
         <Carousel data={carouselData} />
-        <Carousel data={carouselData} className={"col-span-1"} />
+        <Announcement data={carouselData} />
         {/* <Announcement /> */}
       </div>
       {/* WIDGETS CONTENT */}
