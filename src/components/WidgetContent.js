@@ -8,8 +8,11 @@ import {
   FcGraduationCap,
   FcOrganization,
 } from "react-icons/fc";
+import { useTranslation } from "react-i18next";
 
 const WidgetContent = () => {
+  const { t } = useTranslation();
+
   const widgetData = [
     {
       id: 1,
@@ -51,9 +54,7 @@ const WidgetContent = () => {
 
   return (
     <div className="flex flex-col h-full">
-      <h1 className="font-semibold text-2xl mb-6 mt-2">
-        Choose Your Desire Action
-      </h1>
+      <h1 className="font-semibold text-2xl mb-6 mt-2">{t("choose_action")}</h1>
       <div className="h-full grid grid-cols-3 gap-4">
         {widgetData.map((item) => (
           <Widget

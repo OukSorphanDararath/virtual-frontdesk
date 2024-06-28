@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import React, { Suspense } from "react";
 import Loading from "./components/Loading";
 import SubPageLayout from "./components/SubPageLayout";
+import i18n from "./i18n";
 
 // Lazy loaded pages
 const HomePage = React.lazy(() => import("./Pages/HomePage"));
@@ -24,7 +25,9 @@ const ClientCall = React.lazy(() => import("./Pages/Contact/ClientCall"));
 
 function App() {
   return (
-    <div className="relative bg-gradient-to-t from-blue-700 to-blue-950 w-screen h-screen poppins-regular overflow-hidden text-white">
+    <div
+      className={`relative bg-gradient-to-t from-blue-700 to-blue-950 w-screen h-screen poppins-regular overflow-hidden text-white`}
+    >
       <Router>
         <Suspense
           fallback={

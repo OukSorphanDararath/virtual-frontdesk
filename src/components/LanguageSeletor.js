@@ -1,14 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import Backdrop from "./Backdrop";
+import { useTranslation } from "react-i18next"; // Import useTranslation hook
+import i18n from "../i18n";
 
 const LanguageSelector = () => {
+  const { t } = useTranslation(); // Access t function for translations
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
   const languages = [
-    { name: "ខ្មែរ", icon: "https://img.icons8.com/color/96/cambodia.png" },
-    { name: "中国人", icon: "https://img.icons8.com/color/96/china.png" },
+    {
+      code: "en",
+      name: "English",
+      icon: "https://img.icons8.com/color/48/usa.png",
+    },
+    {
+      code: "kh",
+      name: "ខ្មែរ",
+      icon: "https://img.icons8.com/color/96/cambodia.png",
+    },
+    {
+      code: "ch",
+      name: "中文",
+      icon: "https://img.icons8.com/color/96/china.png",
+    },
   ];
 
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -26,6 +42,11 @@ const LanguageSelector = () => {
     };
   }, []);
 
+  const changeLanguage = (languageCode) => {
+    i18n.changeLanguage(languageCode);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative inline-block text-left" ref={dropdownRef}>
       {/* Dropdown Button */}
@@ -36,8 +57,8 @@ const LanguageSelector = () => {
         <img
           width="36"
           height="36"
-          src="https://img.icons8.com/color/48/usa.png"
-          alt="usa"
+          src={languages.find((lang) => lang.code === i18n.language)?.icon}
+          alt={languages.find((lang) => lang.code === i18n.language)?.name}
         />
         {/* Icon for dropdown arrow */}
         <span className="p-1 bg-white text-blue-900 rounded-full">
@@ -52,24 +73,23 @@ const LanguageSelector = () => {
         }`}
       >
         <div className="py-1">
-          {languages.map((language) => (
-            <button
-              key={language}
-              className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
-              onClick={() => {
-                alert(`Selected: ${language.name}`);
-                setIsOpen(false);
-              }}
-            >
-              <img
-                width="36"
-                height="36"
-                src={language.icon}
-                alt={language.name}
-              />
-              {language?.name}
-            </button>
-          ))}
+          {languages
+            .filter((lang) => lang.code !== i18n.language) // Filter out the current language
+            .map((language) => (
+              <button
+                key={language.code}
+                className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                onClick={() => changeLanguage(language.code)}
+              >
+                <img
+                  width="36"
+                  height="36"
+                  src={language.icon}
+                  alt={language.name}
+                />
+                {language.name}
+              </button>
+            ))}
         </div>
       </div>
 
