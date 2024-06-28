@@ -14,21 +14,21 @@ const Modal = ({ onClose, image, title }) => {
 
       {/* Popup Container */}
       <div
-        className={`bg-black z-50 mx-auto rounded-3xl relative overflow-hidden text-blue-900 text-center flex flex-col pt-16 pb-8 items-center gap-6
+        className={`bg-gray-700 z-50 mx-auto rounded-3xl relative overflow-hidden text-blue-900 
     transition-all duration-500 transform ${
       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
     }`}
       >
         <button
           onClick={onClose}
-          className="absolute top-2 text-3xl right-4 text-gray-500 hover:text-gray-700"
+          className="absolute top-2 text-3xl right-2 text-gray-700 hover:text-gray-950 px-2 py-0 flex items-center border  border-gray-500 bg-white/30 rounded-full"
         >
           &times;
         </button>
         <img
           src={image}
           alt={title}
-          className="max-w-full w-full h-full max-h-screen object-contain"
+          className="max-w-full w-[50rem] h-[30rem] max-h-screen object-contain"
         />
       </div>
     </div>
