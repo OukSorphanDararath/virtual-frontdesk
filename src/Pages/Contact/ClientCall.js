@@ -42,6 +42,16 @@ const ClientCall = () => {
   const remoteVideoRef = useRef(null);
 
   useEffect(() => {
+    if (localStream) {
+      localVideoRef.current.srcObject = localStream;
+    }
+
+    if (remoteStream) {
+      remoteVideoRef.current.srcObject = remoteStream;
+    }
+  }, [localStream, remoteStream]);
+
+  useEffect(() => {
     // Periodically check the shared call ID only if there's an ongoing call
     const interval = isCalling
       ? setInterval(() => {
@@ -74,6 +84,11 @@ const ClientCall = () => {
       });
       setLocalStream(stream);
 
+      // Display the local stream in the local video element
+      if (localVideoRef.current) {
+        localVideoRef.current.srcObject = stream;
+      }
+
       stream.getTracks().forEach((track) => {
         pc.current.addTrack(track, stream);
       });
@@ -81,6 +96,9 @@ const ClientCall = () => {
       pc.current.ontrack = (event) => {
         const remoteStream = event.streams[0];
         setRemoteStream(remoteStream);
+        if (remoteVideoRef.current) {
+          remoteVideoRef.current.srcObject = remoteStream;
+        }
       };
     } catch (error) {
       console.error("Error accessing media devices.", error);
