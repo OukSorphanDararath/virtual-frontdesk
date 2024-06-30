@@ -1,14 +1,12 @@
 import React from "react";
 import Widget from "./Widget";
-import {
-  FcPlanner,
-  FcCallback,
-  FcWiFiLogo,
-  FcDepartment,
-  FcGraduationCap,
-  FcOrganization,
-} from "react-icons/fc";
 import { useTranslation } from "react-i18next";
+import contact from "../assets/widgets/contact.svg";
+import campus from "../assets/widgets/campus.svg";
+import schedule from "../assets/widgets/schedule.svg";
+import wifi from "../assets/widgets/wifi.svg";
+import className from "../assets/widgets/classroom.svg";
+import faculties from "../assets/widgets/Frame 243.svg";
 
 const WidgetContent = () => {
   const { t } = useTranslation();
@@ -18,37 +16,37 @@ const WidgetContent = () => {
       id: 1,
       title: "View Class Schedule",
       url: "/schedules",
-      icon: <FcPlanner size={80} />,
+      icon: <img src={schedule} alt="0" />,
     },
     {
       id: 2,
       title: "Contact Information",
       url: "/contacts",
-      icon: <FcCallback size={80} />,
+      icon: <img src={contact} alt="1" />,
     },
     {
       id: 3,
       title: "Connect to Free Wifi",
       url: "/wificonnection",
-      icon: <FcWiFiLogo size={80} />,
+      icon: <img src={wifi} alt="1" />,
     },
     {
       id: 4,
       title: "Find PUC Campus",
       url: "/campus",
-      icon: <FcDepartment size={80} />,
+      icon: <img src={campus} alt="1" />,
     },
     {
       id: 5,
       title: "View PUC Faculty",
       url: "/faculties",
-      icon: <FcGraduationCap size={80} />,
+      icon: <img src={faculties} alt="1" />,
     },
     {
       id: 6,
       title: "Find Classroom",
       url: "/find_room",
-      icon: <FcOrganization size={80} />,
+      icon: <img src={className} alt="1" />,
     },
   ];
 
