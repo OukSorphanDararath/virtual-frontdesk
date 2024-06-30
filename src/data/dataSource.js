@@ -1,6 +1,16 @@
-import firstFloor from "../assets/first-floor.png";
+import firstFloor from "../assets/floors/G1/First Floor.png";
 import room101 from "../assets/room101.png";
 import bis from "../assets/bis.pdf";
+import Administration from "../assets/floors/G1/First Floor - Administration.png";
+import Bookstore from "../assets/floors/G1/First Floor - Bookstore.png";
+import Cashier from "../assets/floors/G1/First Floor - Cashier.png";
+import CopyRoom from "../assets/floors/G1/First Floor - Copy Room.png";
+import EnglishTeam from "../assets/floors/G1/First Floor - English Team.png";
+import Enrollment from "../assets/floors/G1/First Floor - Enrollment.png";
+import FBEDean from "../assets/floors/G1/First Floor - FBE Dean.png";
+import MedicalOffice from "../assets/floors/G1/First Floor - Medical Office.png";
+import SupplyOffice from "../assets/floors/G1/First Floor - Supply Office.png";
+import TeacherLounge from "../assets/floors/G1/First Floor - Teacher's Lounge.png";
 
 export const floorAndRoomData = [
   {
@@ -8,16 +18,16 @@ export const floorAndRoomData = [
     name: "1st Floor",
     img: firstFloor,
     rooms: [
-      { id: 1, name: "Room 101", img: room101 },
-      { id: 2, name: "Room 102" },
-      { id: 3, name: "Room 103" },
-      { id: 4, name: "Room 104" },
-      { id: 5, name: "Room 105" },
-      { id: 6, name: "Room 106" },
-      { id: 7, name: "Room 107" },
-      { id: 8, name: "Room 108" },
-      { id: 9, name: "Room 109" },
-      { id: 10, name: "Room 110" },
+      { id: 1, name: "Administration", img: Administration },
+      { id: 2, name: "Bookstore", img: Bookstore },
+      { id: 3, name: "Cashier", img: Cashier },
+      { id: 4, name: "Copy Room", img: CopyRoom },
+      { id: 5, name: "English Team", img: EnglishTeam },
+      { id: 6, name: "Enrollment", img: Enrollment },
+      { id: 7, name: "FBE Dean", img: FBEDean },
+      { id: 8, name: "Medical Office", img: MedicalOffice },
+      { id: 9, name: "Supply Office", img: SupplyOffice },
+      { id: 10, name: "Teacher's Lounge", img: TeacherLounge },
     ],
   },
   {

@@ -47,7 +47,7 @@ const RoomNavigationPage = () => {
               <img
                 src={selectedRoom?.img ?? selectedFloor?.img}
                 alt={selectedRoom?.name ?? selectedFloor?.name}
-                className="object-contain h-96 w-[100%]"
+                className="object-contain h-full w-full"
               />
             </div>
           </div>
