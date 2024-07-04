@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Backdrop from "./Backdrop";
 
-const Modal = ({ onClose, image, title }) => {
+const Modal = ({ onClose, image, title, content }) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const Modal = ({ onClose, image, title }) => {
 
       {/* Popup Container */}
       <div
-        className={`bg-gray-700 z-50 mx-auto rounded-3xl relative overflow-hidden text-blue-900 
+        className={`bg-gray-700 flex flex-row z-50 h-[80%] w-[60%] mx-auto rounded-3xl relative overflow-auto text-white
     transition-all duration-500 transform ${
       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
     }`}
@@ -28,8 +28,12 @@ const Modal = ({ onClose, image, title }) => {
         <img
           src={image}
           alt={title}
-          className="max-w-full w-[50rem] h-[30rem] max-h-screen object-contain"
+          className="max-w-[30rem] max-h-screen object-contain flex-1"
         />
+        <div className="p-4 mt-10">
+          <h1 className="font-semibold text-xl mb-4">{title}</h1>
+          <p className="font-light">{content}</p>
+        </div>
       </div>
     </div>
   );

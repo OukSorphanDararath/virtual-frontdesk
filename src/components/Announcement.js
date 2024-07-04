@@ -1,11 +1,30 @@
 import React, { useState, useEffect } from "react";
 import Modal from "./Modal";
+import axios from "axios";
+
+const apiBaseUrl = process.env.REACT_APP_API_KEY;
 
 const Announcement = ({ data, interval = 5000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({ image: "", title: "" });
+  const [modalContent, setModalContent] = useState({
+    image: "",
+    title: "",
+    content: "",
+  });
+  const [annData, setAnnData] = useState();
+
+  useEffect(() => {
+    axios
+      .get(`${apiBaseUrl}/announcements`)
+      .then((response) => {
+        setAnnData(response.data.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the data!", error);
+      });
+  }, []);
 
   useEffect(() => {
     const autoplay = setInterval(() => {
@@ -17,7 +36,7 @@ const Announcement = ({ data, interval = 5000 }) => {
   const nextSlide = () => {
     setIsTransitioning(true);
     setTimeout(() => {
-      const isLastSlide = currentIndex === data.length - 1;
+      const isLastSlide = currentIndex === annData?.length - 1;
       const newIndex = isLastSlide ? 0 : currentIndex + 1;
       setCurrentIndex(newIndex);
       setIsTransitioning(false);
@@ -32,8 +51,8 @@ const Announcement = ({ data, interval = 5000 }) => {
     }, 500); // Adjust the duration to match your transition duration
   };
 
-  const openModal = (image, title) => {
-    setModalContent({ image, title });
+  const openModal = (image, title, content) => {
+    setModalContent({ image, title, content });
     setIsModalOpen(true);
   };
 
@@ -50,11 +69,11 @@ const Announcement = ({ data, interval = 5000 }) => {
           }`}
           style={{ transform: `translateX(-${currentIndex * 100}%)` }}
         >
-          {data.map((item, index) => (
+          {annData?.map((item, index) => (
             <div
               key={index}
               className="min-w-full flex-shrink-0 relative cursor-pointer"
-              onClick={() => openModal(item.image, item.title)}
+              onClick={() => openModal(item.image, item.title, item.content)}
             >
               <img
                 src={item.image}
@@ -66,7 +85,7 @@ const Announcement = ({ data, interval = 5000 }) => {
         </div>
       </div>
       <div className="absolute bottom-3 right-3 flex flex-col space-y-2">
-        {data.map((_, index) => (
+        {annData?.map((_, index) => (
           <div
             key={index}
             onClick={() => goToSlide(index)}
@@ -82,6 +101,7 @@ const Announcement = ({ data, interval = 5000 }) => {
         <Modal
           image={modalContent.image}
           title={modalContent.title}
+          content={modalContent.content}
           onClose={closeModal}
         />
       )}
