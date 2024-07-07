@@ -12,8 +12,11 @@ const Announcement = ({ data, interval = 5000 }) => {
     image: "",
     title: "",
     content: "",
+    link: "",
   });
   const [annData, setAnnData] = useState();
+
+  console.log(annData);
 
   useEffect(() => {
     axios
@@ -51,8 +54,8 @@ const Announcement = ({ data, interval = 5000 }) => {
     }, 500); // Adjust the duration to match your transition duration
   };
 
-  const openModal = (image, title, content) => {
-    setModalContent({ image, title, content });
+  const openModal = (image, title, content, link) => {
+    setModalContent({ image, title, content, link });
     setIsModalOpen(true);
   };
 
@@ -73,7 +76,9 @@ const Announcement = ({ data, interval = 5000 }) => {
             <div
               key={index}
               className="min-w-full flex-shrink-0 relative cursor-pointer"
-              onClick={() => openModal(item.image, item.title, item.content)}
+              onClick={() =>
+                openModal(item.image, item.title, item.content, item.link)
+              }
             >
               <img
                 src={item.image}
@@ -102,6 +107,7 @@ const Announcement = ({ data, interval = 5000 }) => {
           image={modalContent.image}
           title={modalContent.title}
           content={modalContent.content}
+          link={modalContent.link}
           onClose={closeModal}
         />
       )}

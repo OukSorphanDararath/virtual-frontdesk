@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Backdrop from "./Backdrop";
+import { IoClose } from "react-icons/io5";
 
-const Modal = ({ onClose, image, title, content }) => {
+const Modal = ({ onClose, image, title, content, link }) => {
   const [isVisible, setIsVisible] = useState(false);
+  const [openLink, setOpenLink] = useState(false);
+
+  console.log(link);
 
   useEffect(() => {
     setIsVisible(true);
@@ -34,7 +38,27 @@ const Modal = ({ onClose, image, title, content }) => {
           <h1 className="font-semibold text-xl mb-4">{title}</h1>
           <p className="font-light">{content}</p>
         </div>
+        <button
+          onClick={() => setOpenLink(true)}
+          className="underline cursor-pointer absolute bottom-6 right-6"
+        >
+          See More >
+        </button>
       </div>
+
+      {openLink && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+          <div className="relative bg-white w-3/4 h-3/4 p-4 rounded-lg overflow-hidden">
+            <button
+              className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-700"
+              onClick={() => setOpenLink(false)}
+            >
+              <IoClose size={24} />
+            </button>
+            <iframe src={link} className="w-full h-full" title={title} />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
