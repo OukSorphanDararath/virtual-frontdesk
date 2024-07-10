@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { FiSearch } from "react-icons/fi";
+import { IoCloseCircle } from "react-icons/io5"; // Import the close icon
 import TouchKeyboard from "./TouchKeyboard";
 import PropTypes from "prop-types"; // Import PropTypes to validate props
 
@@ -75,6 +76,13 @@ const SearchBox = ({ floorAndRoomData, onRoomSelect }) => {
     onRoomSelect({ floor, room });
   };
 
+  // Clear the input value
+  const clearInput = () => {
+    setInputValue("");
+    setFilteredRooms([]);
+    setShowFilterList(false);
+  };
+
   return (
     <div className="relative">
       <div className="absolute inset-y-0 left-0 z-10 flex items-center pl-6 pointer-events-none">
@@ -90,6 +98,15 @@ const SearchBox = ({ floorAndRoomData, onRoomSelect }) => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
+      {inputValue && (
+        <button
+          type="button"
+          className="absolute inset-y-0 right-0 z-10 flex items-center pr-6 focus:outline-none"
+          onClick={clearInput}
+        >
+          <IoCloseCircle className="w-6 h-6 text-white" />
+        </button>
+      )}
       {filteredRooms.length > 0 && showFilterList && (
         <ul className="absolute z-20 mt-2 w-96 text-blue-950 font-semibold bg-white shadow-lg rounded-xl max-h-60 overflow-auto">
           {filteredRooms.map(({ floor, room }) => (

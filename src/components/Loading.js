@@ -2,9 +2,8 @@ import React from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 
 const Loading = () => {
-
   return (
-    <div className="w-full h-full flex justify-center items-center">
+    <div className="fixed inset-0 flex justify-center items-center ">
       <PuffLoader
         color="#ffffff"
         size={100}
