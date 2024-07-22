@@ -12,7 +12,13 @@ const CampusOverview = ({ campusData }) => {
         {campusData.map((item, index) => {
           const colorClass = colors[index % colors.length];
           return (
-            <Link key={item?.id} to={`${pathname}/${item?.id}`}>
+            <Link
+              key={item?.id}
+              to={{
+                pathname: `${pathname}/${item?.id}`,
+                state: { qr: item?.qr, map: item?.map },
+              }}
+            >
               <Card className={`relative mr-5 ${colorClass}`}>
                 <div className="flex justify-center items-center h-full">
                   <h1 className="text-3xl font-medium text-wrap mx-10 text-center leading-relaxed text-shadow">
