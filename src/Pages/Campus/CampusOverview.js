@@ -16,7 +16,7 @@ const CampusOverview = ({ campusData }) => {
               key={item?.id}
               to={{
                 pathname: `${pathname}/${item?.id}`,
-                state: { qr: item?.qr, map: item?.map },
+                state: { title: item?.title, qr: item?.qr, map: item?.map },
               }}
             >
               <Card className={`relative mr-5 ${colorClass}`}>

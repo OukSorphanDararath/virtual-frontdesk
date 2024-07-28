@@ -175,7 +175,7 @@ export const facultiesData = [
     id: 2,
     title: "Faculty of Education",
     image:
-      "https://t3.ftcdn.net/jpg/05/75/22/58/360_F_575225818_PQ2ZPHFw51yCcmieutB5bT843nPAPzo3.jpg",
+      "https://www.gao.gov/assets/extracts/f82aba5955f9b2f1d5b6787034580bc0/FastFacts-v01_104832-jb.png",
     major: [
       { id: 1, name: "Curriculum and Instruction", pdf: bis },
       { id: 2, name: "Educational Leadership", pdf: bis },
@@ -197,7 +197,8 @@ export const facultiesData = [
   {
     id: 4,
     title: "Faculty of Arts, Letters, and Humanities",
-    image: "https://images.unsplash.com/photo-1593642532904-0d106b6d21d8",
+    image:
+      "https://i.pinimg.com/236x/53/65/71/5365719fcbeda76fa27fd7b410a0419f.jpg",
     major: [
       { id: 1, name: "Literature", pdf: bis },
       { id: 2, name: "Philosophy", pdf: bis },
@@ -209,7 +210,8 @@ export const facultiesData = [
   {
     id: 5,
     title: "Faculty of Law and Public Affairs",
-    image: "https://images.pexels.com/photos/5642712/pexels-photo-5642712.jpeg",
+    image:
+      "https://t3.ftcdn.net/jpg/05/75/22/58/360_F_575225818_PQ2ZPHFw51yCcmieutB5bT843nPAPzo3.jpg",
     major: [
       { id: 1, name: "Law", pdf: bis },
       { id: 2, name: "Political Science", pdf: bis },

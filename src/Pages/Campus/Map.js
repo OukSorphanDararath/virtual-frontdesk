@@ -7,12 +7,12 @@ const Map = () => {
   const [showQRcode, setShowQRcode] = useState(false);
 
   const location = useLocation();
-  const { qr, map } = location.state || {};
+  const {title, qr, map } = location.state || {};
 
   return (
     <div className="w-full h-full">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-semibold my-8">Toul Kork Campus</h1>
+        <h1 className="text-3xl font-semibold my-8">{title}</h1>
         <Button
           text={"Send Direct to Your Phone"}
           customClass={

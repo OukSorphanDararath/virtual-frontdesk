@@ -1,6 +1,7 @@
 import React from "react";
 import Popup from "../components/Popup";
-// import Loading from "../components/Loading"; 
+// import Loading from "../components/Loading";
+import wifi from "../assets/puc-wifi.png";
 
 const WifiConnectionPage = () => {
   return (
@@ -10,7 +11,7 @@ const WifiConnectionPage = () => {
         disableBackDrop={true}
         title="Scan the QR Code To Connect to Wi-Fi"
         description="Scan This QR code to easily connect to the PUC's free Wi-Fi"
-        imgSrc="https://cdn.britannica.com/17/155017-050-9AC96FC8/Example-QR-code.jpg"
+        imgSrc={wifi}
       />
     </div>
     // <Loading />
