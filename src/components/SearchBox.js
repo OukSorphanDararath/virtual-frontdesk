@@ -33,11 +33,14 @@ const SearchBox = ({ floorAndRoomData, onRoomSelect }) => {
 
   // Filter rooms based on input value
   useEffect(() => {
-    if (inputValue) {
+    const trimmedInput = inputValue.replace(/\s/g, "").toLowerCase();
+    if (trimmedInput) {
       const results = [];
       floorAndRoomData.forEach((floor) => {
         floor.rooms.forEach((room) => {
-          if (room.name.toLowerCase().includes(inputValue.toLowerCase())) {
+          if (
+            room.name.replace(/\s/g, "").toLowerCase().includes(trimmedInput)
+          ) {
             results.push({ floor, room });
           }
         });
