@@ -22,7 +22,7 @@ const RoomNavigationPage = () => {
           }}
         />
       </div>
-      <div className="w-full h-3/4 rounded-xl flex overflow-hidden shadow-md bg-gray-100 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
+      <div className="w-full h-[30rem] rounded-xl flex overflow-hidden shadow-md bg-gray-100 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
         <div className="w-52 flex flex-col font-medium text-lg ">
           <h1 className="text-center mt-8 mb-10">Floor Map</h1>
           <ul className="flex-1 flex flex-col overflow-y-auto no-scrollbar gap-2">
