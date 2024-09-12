@@ -215,7 +215,7 @@ const ClientCall = () => {
             ref={remoteVideoRef}
             autoPlay
             playsInline
-            className="w-[80%] h-[100%] object-cover"
+            className="w-[100%] h-[100%] object-cover"
           />
         </div>
       </div>
